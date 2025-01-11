@@ -41,25 +41,5 @@ class DatabaseSeeder extends Seeder
             'role' => 'student'
         ]]);
 
-
-        \App\Models\Role::create([
-            'name' => 'admin',
-            'description' => 'admin role'
-        ]);
-
-        \App\Models\Role::create([
-            'name' => 'teacher',
-            'description' => 'teacher role'
-        ]);
-
-        \App\Models\Role::create([
-            'name' => 'chairman',
-            'description' => 'chairman role'
-        ]);
-
-        \App\Models\Role::create([
-            'name' => 'student',
-            'description' => 'student role'
-        ]);
     }
 }

@@ -18,6 +18,7 @@ class CreateCoursesTable extends Migration
             $table->string('title');
             $table->string('code');
             $table->integer('credit');
+            $table->boolean('status')->default(true);
             $table->timestamps();
         });
     }

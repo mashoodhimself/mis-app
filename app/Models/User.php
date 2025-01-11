@@ -21,14 +21,4 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    protected $with = ['roles'];
-
-    public function roles() {
-        return $this->belongsToMany(Role::class, 'user_roles');
-    }
-
-    public function hasRole($role) {
-        return $this->roles->contains('name', $role);
-    }
-
 }

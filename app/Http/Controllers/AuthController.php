@@ -18,9 +18,4 @@ class AuthController extends Controller
         return redirect('/login');
 
     }
-
-    public function assignRole(Request $request, User $user, Role $role) {
-        $user->assignRole($role);
-        return redirect()->back()->with('success', 'Role assigned successfully.');
-    }
 }

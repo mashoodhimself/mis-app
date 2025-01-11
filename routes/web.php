@@ -1,9 +1,11 @@
 <?php
 
-use App\Http\Controllers\Admin\CourseController;
-use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\CourseController;
+use App\Http\Controllers\Teacher\AttendanceController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +26,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth')->group(function() {
     
     Route::get('/', function () {
+
         return view('dashboard');
     });
 
@@ -67,6 +70,16 @@ Route::middleware('auth')->group(function() {
     Route::post('/course/edit/{course}', [CourseController::class, 'update']);
 
     Route::get('/course/delete/{course}', [CourseController::class, 'destroy']);
+
+    Route::get('/attendance/view', [AttendanceController::class, 'index']);
+
+    Route::get('/attendance/edit/{attendance}', [AttendanceController::class, 'edit']);
+
+    Route::post('/attendance/edit/{attendance}', [AttendanceController::class, 'update']);
+
+    Route::get('/attendance/upload', [AttendanceController::class, 'create']);
+
+    Route::post('/attendance/upload', [AttendanceController::class, 'store']);
 
 });
 

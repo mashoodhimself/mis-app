@@ -13,7 +13,7 @@
           <img src="{{ asset('assets/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block">{{ auth()->user()->name }} ( {{ Str::ucfirst(auth()->user()->role) }} )</a>
         </div>
       </div>
 
@@ -21,7 +21,7 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
-          @if(auth()->user()->hasRole('admin'))
+          @if(auth()->user()->role === 'admin')
 
             <li class="nav-item menu-open">
               <a href="#" class="nav-link active">
@@ -126,7 +126,7 @@
 
           @endif
 
-          @if(auth()->user()->hasRole('teacher'))
+          @if(auth()->user()->role === 'teacher')
             <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-user-graduate"></i>
@@ -137,13 +137,13 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="pages/UI/general.html" class="nav-link">
+                    <a href="/attendance/upload" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Upload Attendance</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="pages/UI/icons.html" class="nav-link">
+                    <a href="/attendance/view" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>View Attendance</p>
                     </a>
@@ -183,7 +183,7 @@
             </li>
           @endif
 
-          @if (auth()->user()->hasRole('student'))
+          @if (auth()->user()->role === 'student')
             <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="nav-icon far fa-meh"></i>
@@ -218,7 +218,7 @@
             </li>
           @endif
 
-          @if (auth()->user()->hasRole('chairman'))
+          @if (auth()->user()->role === 'chairman')
             <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="nav-icon far fa-meh"></i>
