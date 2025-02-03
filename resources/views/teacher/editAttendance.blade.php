@@ -63,6 +63,13 @@
 
                                 <div class="row mb-3">
                                     <div class="col-md-12">
+                                        <label>Course</label>
+                                        <input disabled type="text" value="{{ $attendanceRecord->course_id }}" name="section" id="section" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-12">
                                         <label>Date</label>
                                         <input disabled type="text" value="{{ $attendanceRecord->attendance_date }}" name="attendance_date" id="attendance_date" class="form-control">
                                     </div>

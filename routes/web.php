@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CourseController;
+use App\Http\Controllers\Teacher\MarkController;
+use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Teacher\AttendanceController;
 
 
@@ -59,6 +61,10 @@ Route::middleware('auth')->group(function() {
 
     Route::get('/student/delete/{student}', [UserController::class, 'destroyStudent']);
 
+    Route::get('/student/attendance', [StudentController::class, 'attendanceIndex']);
+
+    Route::post('/student/attendance', [StudentController::class, 'attendanceIndex']);
+
     Route::get('/courses', [CourseController::class, 'index']);
 
     Route::get('/course/add', [CourseController::class, 'create']); 
@@ -80,6 +86,8 @@ Route::middleware('auth')->group(function() {
     Route::get('/attendance/upload', [AttendanceController::class, 'create']);
 
     Route::post('/attendance/upload', [AttendanceController::class, 'store']);
+
+    Route::get('/marks/upload', [MarkController::class, 'create']);
 
 });
 

@@ -24,6 +24,7 @@
                                         <th>STUDENT NAME</th>
                                         <th>SEMESTER</th>
                                         <th>SECTION</th>
+                                        <th>COURSE</th>
                                         <th>ATTENDANCE</th>
                                         <th>DATE</th>
                                         <th>ACTION</th>
@@ -37,6 +38,7 @@
                                             <td>{{ $attendanceRecord->student_name }}</td>
                                             <td>{{ $attendanceRecord->semester }}</td>
                                             <td>{{ $attendanceRecord->section }}</td>
+                                            <td>{{ $attendanceRecord->course_id }}</td>
                                             <td>{{ $attendanceRecord->attendance }}</td>
                                             <td>{{ $attendanceRecord->attendance_date }}</td>
                                             <td><a href="/attendance/edit/{{ $attendanceRecord->id }}"><i class="fas fa-edit"></i></a></td>

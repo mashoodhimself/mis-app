@@ -26,17 +26,31 @@
 
                                 <div class="row mb-3">
                                     <div class="col-md-12">
+                                        <label for="">Course Title</label>
                                         <input type="text" name="title" id="title" class="form-control" value="{{ $course->title }}" placeholder="Course title">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col-md-12">
+                                        <label for="">Course Code</label>
                                         <input type="text" name="code" id="code" class="form-control" value="{{ $course->code }}" placeholder="Course Code">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col-md-12">
+                                        <label for="">Course Credits</label>
                                         <input type="number" name="credit" id="credit" class="form-control" value="{{ $course->credit }}" placeholder="Credit Hr">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-12">
+                                        <label for="">Teach By</label>
+                                        <select name="teacher_id" id="teacher_id" class="form-control">
+                                            <option selected value="0">Select Teacher</option>
+                                            @foreach (\App\Services\UserService::getAllActiveTeachers() as $teacher)
+                                                <option {{ $teacher->id === $user_id ? 'selected' : '' }} value="{{ $teacher->id }}">{{ $teacher->name }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="row mb-3" >

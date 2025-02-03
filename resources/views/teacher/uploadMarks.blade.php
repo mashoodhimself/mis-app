@@ -8,7 +8,7 @@
 
 <div class="content-wrapper">
 
-    <x-commons.content-header title="Upload Attendance" />
+    <x-commons.content-header title="Upload Marks" />
 
     <div class="content">
         <div class="container-fluid">
@@ -25,7 +25,7 @@
                         @endif
 
                         <div class="card-body">
-                            <form action="/attendance/upload" method="POST" enctype="multipart/form-data">
+                            <form action="/marks/upload" method="POST" enctype="multipart/form-data">
 
                                 @csrf
 
@@ -34,9 +34,11 @@
                                         <label>Course</label>
                                         <select class="form-control" name="course_id" id="course_id">
                                             <option selected disabled>Select Course</option>
-                                            <option value="1">Maths</option>
-                                            <option value="2">English</option>
-                                            <option value="3">Urdu</option>
+                                            @if (!empty($assignedCourses))
+                                                @foreach ($assignedCourses as $course)
+                                                    <option value="{{ $course->id }}"> {{ $course->course_name }} </option>
+                                                @endforeach
+                                            @endif
                                         </select>
                                         @error('course_id')
                                             <small class="text-danger">{{ $message }}</small>
@@ -49,15 +51,6 @@
                                         <label> Upload File </label>
                                         <input type="file" name="attendance_file" id="attendance_file" class="form-control">
                                         @error('attendance_file')
-                                            <small class="text-danger"> {{ $message }} </small>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-md-12">
-                                        <label> Attendance Date </label>
-                                        <input type="date" name="attendance_date" id="attendance_date" class="form-control">
-                                        @error('attendance_date')
                                             <small class="text-danger"> {{ $message }} </small>
                                         @enderror
                                     </div>

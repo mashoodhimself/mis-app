@@ -11,7 +11,7 @@ class AttendanceController extends Controller
 {
     public function index()
     {
-        $attendanceRecords = Attendance::select('id', 'registration_no', 'student_name', 'semester', 'section', 'attendance', 'attendance_date')->get();
+        $attendanceRecords = Attendance::select('id', 'course_id', 'registration_no', 'student_name', 'semester', 'section', 'attendance', 'attendance_date')->get();
         return view('teacher.viewAttendance', ['attendanceRecords' => $attendanceRecords]);
     }
 
@@ -24,16 +24,19 @@ class AttendanceController extends Controller
     {   
 
         $request->validate([
+            'course_id' => 'required',
             'attendance_date' => 'required',
             'attendance_file' => 'required|file|mimes:xlsx,xls'
         ]);
+
+        $course_id = $request->course_id;
 
         $attendance_date = $request->attendance_date;
 
         $attendance_file = $request->file('attendance_file');
 
         try {
-            $attendanceData = ExcelService::readAndProcessAttendanceFile($attendance_file, $attendance_date);
+            $attendanceData = ExcelService::readAndProcessAttendanceFile($course_id, $attendance_file, $attendance_date);
             Attendance::insert($attendanceData);
             $responseData = ['status' => 'success', 'message' => 'Attendance Upload Successfully.'];
             
