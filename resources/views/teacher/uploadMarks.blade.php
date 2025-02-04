@@ -49,8 +49,8 @@
                                 <div class="row mb-3">
                                     <div class="col-md-12">
                                         <label> Upload File </label>
-                                        <input type="file" name="attendance_file" id="attendance_file" class="form-control">
-                                        @error('attendance_file')
+                                        <input type="file" name="marks_file" id="marks_file" class="form-control">
+                                        @error('marks_file')
                                             <small class="text-danger"> {{ $message }} </small>
                                         @enderror
                                     </div>

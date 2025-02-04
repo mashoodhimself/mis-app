@@ -8,7 +8,6 @@ use App\Http\Controllers\Teacher\MarkController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Teacher\AttendanceController;
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,14 +24,14 @@ use App\Http\Controllers\Teacher\AttendanceController;
 // });
 
 
-Route::middleware('auth')->group(function() {
-    
+Route::middleware('auth')->group(function () {
+
     Route::get('/', function () {
 
         return view('dashboard');
     });
 
-    Route::get('/logout', function() {
+    Route::get('/logout', function () {
         Auth::logout();
         return redirect('/login');
     });
@@ -67,9 +66,9 @@ Route::middleware('auth')->group(function() {
 
     Route::get('/courses', [CourseController::class, 'index']);
 
-    Route::get('/course/add', [CourseController::class, 'create']); 
+    Route::get('/course/add', [CourseController::class, 'create']);
 
-    Route::post('/course/add', [CourseController::class, 'store']); 
+    Route::post('/course/add', [CourseController::class, 'store']);
 
     Route::get('/course/edit/{course}', [CourseController::class, 'edit']);
 
@@ -89,6 +88,8 @@ Route::middleware('auth')->group(function() {
 
     Route::get('/marks/upload', [MarkController::class, 'create']);
 
+    Route::post('/marks/upload', [MarkController::class, 'store']);
+
 });
 
 
@@ -98,5 +99,3 @@ Route::get('/login', function () {
 })->name('login');
 
 Route::post('/login', [AuthController::class, 'login']);
-
-
