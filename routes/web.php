@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\AjaxHandlerController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Teacher\MarkController;
 use App\Http\Controllers\Admin\StudentController;
@@ -86,9 +87,15 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/attendance/upload', [AttendanceController::class, 'store']);
 
+    Route::get('/marks/view', [MarkController::class, 'index']);
+
     Route::get('/marks/upload', [MarkController::class, 'create']);
 
     Route::post('/marks/upload', [MarkController::class, 'store']);
+
+    /** Ajax Related Routes */
+    Route::post('/marks/detail', [AjaxHandlerController::class, 'getMarksById']);
+    /** Ajax Routes End */
 
 });
 

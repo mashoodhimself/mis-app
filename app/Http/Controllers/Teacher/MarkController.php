@@ -10,6 +10,12 @@ use App\Services\CourseAssignmentService;
 
 class MarkController extends Controller
 {
+    public function index()
+    {
+        $marks = Mark::with('course')->select('id', 'course_id', 'registration_no', 'final_sessional_marks', 'mid_term_marks', 'created_at')->get();
+        return view('teacher.viewMarks', ['marks' => $marks]);
+    }
+
     public function create()
     {
         $courseAssignmentService = new CourseAssignmentService();
