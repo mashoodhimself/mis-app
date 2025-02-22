@@ -8,7 +8,7 @@
 
 <div class="content-wrapper">
 
-    <x-commons.content-header title="Upload Marks" />
+    <x-commons.content-header title="Upload Results" />
 
     <div class="content">
         <div class="container-fluid">
@@ -27,10 +27,10 @@
                         <div class="card-body">
 
                             <div class="d-flex justify-content-end">
-                                <a class="btn btn-secondary" href="/marks/view">View Marks</a>
+                                <a class="btn btn-secondary" href="/results/view">View Results</a>
                             </div>
 
-                            <form action="/marks/upload" method="POST" enctype="multipart/form-data">
+                            <form action="/results/upload" method="POST" enctype="multipart/form-data">
 
                                 @csrf
 
@@ -54,8 +54,8 @@
                                 <div class="row mb-3">
                                     <div class="col-md-12">
                                         <label> Upload File </label>
-                                        <input type="file" name="marks_file" id="marks_file" class="form-control">
-                                        @error('marks_file')
+                                        <input type="file" name="results_file" id="results_file" class="form-control">
+                                        @error('results_file')
                                             <small class="text-danger"> {{ $message }} </small>
                                         @enderror
                                     </div>

@@ -109,4 +109,37 @@ class ExcelService
         return $marksData;
     }
 
+    public static function readAndProcessResultsFile($course_id, $resultsFile)
+    {
+        $excelRecords = Excel::toArray(new Collection(), $resultsFile)[0];
+
+        $resultsData = [];
+
+        $counter = 0;
+
+        foreach($excelRecords as $index => $excelRow) {
+
+            if($counter === 0 || count(array_filter($excelRow)) === 0) {
+                $counter++;
+                continue;
+            }
+
+            array_push($resultsData, [
+                'course_id' => $course_id,
+                'registration_no' => $excelRow[0],
+                'sessional_marks' => $excelRow[1],
+                'midterm_marks' => $excelRow[2],
+                'final_marks' => $excelRow[3],
+                'final_score' => $excelRow[4],
+                'normalized_score' => $excelRow[5],
+                'grade' => $excelRow[6],
+                'gpa' => $excelRow[7],
+                'added_by' => auth()->user()->id,
+                'created_at' => date('Y-m-d H:i:s')
+            ]);
+        }
+        
+        return $resultsData;
+    }
+
 }

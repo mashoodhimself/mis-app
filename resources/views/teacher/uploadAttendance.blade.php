@@ -25,6 +25,11 @@
                         @endif
 
                         <div class="card-body">
+
+                            <div class="d-flex justify-content-end">
+                                <a class="btn btn-secondary" href="/attendance/view">View Attendance</a>
+                            </div>
+
                             <form action="/attendance/upload" method="POST" enctype="multipart/form-data">
 
                                 @csrf

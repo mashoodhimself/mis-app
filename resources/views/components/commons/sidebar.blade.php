@@ -127,11 +127,11 @@
           @endif
 
           @if(auth()->user()->role === 'teacher')
-            <li class="nav-item">
+              <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-user-graduate"></i>
                   <p>
-                    Attendance
+                    Students
                     <i class="fas fa-angle-left right"></i>
                   </p>
                 </a>
@@ -143,32 +143,15 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="/attendance/view" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>View Attendance</p>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon fas fa-user-graduate"></i>
-                  <p>
-                    Student Marks
-                    <i class="fas fa-angle-left right"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
                     <a href="/marks/upload" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Upload Marks</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="/marks/view" class="nav-link">
+                    <a href="/results/upload" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
-                      <p>View Marks</p>
+                      <p>Upload Results</p>
                     </a>
                   </li>
                 </ul>

@@ -7,6 +7,7 @@ use App\Http\Controllers\AjaxHandlerController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Teacher\MarkController;
 use App\Http\Controllers\Admin\StudentController;
+use App\Http\Controllers\Teacher\ResultController;
 use App\Http\Controllers\Teacher\AttendanceController;
 
 /*
@@ -89,12 +90,24 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/marks/view', [MarkController::class, 'index']);
 
+    Route::post('/marks/view', [MarkController::class, 'index']);
+
     Route::get('/marks/upload', [MarkController::class, 'create']);
 
     Route::post('/marks/upload', [MarkController::class, 'store']);
 
+    Route::get('/results/view', [ResultController::class, 'index']);
+
+    Route::post('/results/view', [ResultController::class, 'index']);
+
+    Route::get('/results/upload', [ResultController::class, 'create']);
+
+    Route::post('/results/upload', [ResultController::class, 'store']);
+
     /** Ajax Related Routes */
     Route::post('/marks/detail', [AjaxHandlerController::class, 'getMarksById']);
+    Route::post('/marks/destroy', [MarkController::class, 'destroy']);
+    Route::post('/results/destroy', [ResultController::class, 'destroy']);
     /** Ajax Routes End */
 
 });

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Mark;
 use App\Models\User;
+use App\Models\Result;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -21,6 +22,11 @@ class Course extends Model
     public function marks()
     {
         return $this->hasMany(Mark::class);
+    }
+
+    public function results()
+    {
+        return $this->hasOne(Result::class);
     }
 
 }
