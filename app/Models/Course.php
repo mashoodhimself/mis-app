@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Mark;
 use App\Models\User;
 use App\Models\Result;
+use App\Models\Attendance;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -27,6 +28,11 @@ class Course extends Model
     public function results()
     {
         return $this->hasOne(Result::class);
+    }
+
+    public function attendance()
+    {
+        return $this->hasOne(Attendance::class);
     }
 
 }

@@ -80,11 +80,15 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/attendance/view', [AttendanceController::class, 'index']);
 
+    Route::post('/attendance/view', [AttendanceController::class, 'index']);
+
     Route::get('/attendance/edit/{attendance}', [AttendanceController::class, 'edit']);
 
     Route::post('/attendance/edit/{attendance}', [AttendanceController::class, 'update']);
 
     Route::get('/attendance/upload', [AttendanceController::class, 'create']);
+
+    Route::get('/attendance/teacher', [AttendanceController::class, 'indexTeacherAttendance']);
 
     Route::post('/attendance/upload', [AttendanceController::class, 'store']);
 
@@ -104,10 +108,15 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/results/upload', [ResultController::class, 'store']);
 
+    Route::get('/results/graph', [ResultController::class, 'gradeDistributionGraph']);
+
     /** Ajax Related Routes */
     Route::post('/marks/detail', [AjaxHandlerController::class, 'getMarksById']);
+    Route::post('/attendance/destroy', [AttendanceController::class, 'destroy']);
     Route::post('/marks/destroy', [MarkController::class, 'destroy']);
     Route::post('/results/destroy', [ResultController::class, 'destroy']);
+    Route::post('/attendance/teacher', [AttendanceController::class, 'storePunchInAttendanceAjax']);
+    Route::post('/results/graph', [ResultController::class, 'getGradeCountByCourseId']);
     /** Ajax Routes End */
 
 });

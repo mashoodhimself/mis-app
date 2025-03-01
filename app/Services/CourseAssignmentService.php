@@ -31,6 +31,16 @@ class CourseAssignmentService
 
     }
 
+    public function getThisTeacherAssignedCourses(): object
+    {
+        return DB::table('courses')
+            ->join('course_assignments', 'course_assignments.course_id', '=', 'courses.id')
+            ->where('course_assignments.user_id', auth()->user()->id)
+            ->select('courses.id', 'courses.title as course_name')
+            ->get();
+
+    }
+
     public function getThisTeacherCoursesHavingResults($teacherId)
     {
         return DB::table('courses')
@@ -51,6 +61,21 @@ class CourseAssignmentService
         return DB::table('courses')
             ->join('course_assignments', 'course_assignments.course_id', '=', 'courses.id')
             ->join('marks', 'marks.course_id', '=', 'course_assignments.course_id')
+            ->select([
+                'courses.id',
+                'courses.title'
+            ])
+            ->where('course_assignments.user_id', $teacherId)
+            ->where('courses.status', 1)
+            ->groupBy(['courses.id', 'courses.title'])
+            ->get();
+    }
+
+    public function getThisTeacherCoursesHavingAttendance($teacherId)
+    {
+        return DB::table('courses')
+            ->join('course_assignments', 'course_assignments.course_id', '=', 'courses.id')
+            ->join('attendances', 'attendances.course_id', '=', 'course_assignments.course_id')
             ->select([
                 'courses.id',
                 'courses.title'

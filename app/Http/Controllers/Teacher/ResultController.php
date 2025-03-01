@@ -38,7 +38,7 @@ class ResultController extends Controller
 
     public function create()
     {
-        $data['assignedCourses'] = $this->courseAssignmentService->getAssignedCourses();
+        $data['assignedCourses'] = $this->courseAssignmentService->getThisTeacherAssignedCourses();
         return view('teacher.uploadResults', $data);
     }
 
@@ -66,11 +66,44 @@ class ResultController extends Controller
         return redirect('results/upload')->with($responseData['status'], $responseData['message']);
     }
 
+    public function gradeDistributionGraph()
+    {
+        $data['courses'] = $this->courseAssignmentService->getThisTeacherCoursesHavingResults(auth()->user()->id);
+        return view('teacher.gradeDistributionGraph', $data);
+    }
+
+    public function getGradeCountByCourseId()
+    {
+        $result = new Result();
+
+        $gradesLabel = ['A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D+', 'D', 'F'];
+
+        $gradesCountValues = [
+            $result->getThisGradeCountByCourse(request()->course_id, $gradesLabel[0]),
+            $result->getThisGradeCountByCourse(request()->course_id, $gradesLabel[1]),
+            $result->getThisGradeCountByCourse(request()->course_id, $gradesLabel[2]),
+            $result->getThisGradeCountByCourse(request()->course_id, $gradesLabel[3]),
+            $result->getThisGradeCountByCourse(request()->course_id, $gradesLabel[4]),
+            $result->getThisGradeCountByCourse(request()->course_id, $gradesLabel[5]),
+            $result->getThisGradeCountByCourse(request()->course_id, $gradesLabel[6]),
+            $result->getThisGradeCountByCourse(request()->course_id, $gradesLabel[7]),
+            $result->getThisGradeCountByCourse(request()->course_id, $gradesLabel[8]),
+            $result->getThisGradeCountByCourse(request()->course_id, $gradesLabel[9]),
+            $result->getThisGradeCountByCourse(request()->course_id, $gradesLabel[10]),
+        ];
+
+        echo json_encode([
+            'labels' => $gradesLabel,
+            'values' => $gradesCountValues
+        ]);
+        
+    }
+
     public function destroy(Request $request)
     {
 
         $course_id = (int) $request->courseId;
-        $deleted = Result::where('course_id', $course_id)->delete();    
+        $deleted = Result::where('course_id', $course_id)->delete();
         return response()->json([ 'message' => $deleted ? 'Records deleted successfully' : 'Something went wrong pls try again!' ], $deleted ? 200 : 400);
     }
 }

@@ -10,7 +10,6 @@ use App\Services\CourseAssignmentService;
 
 class MarkController extends Controller
 {
-
     public function __construct(private $courseAssignmentService = new CourseAssignmentService())
     {
 
@@ -40,7 +39,7 @@ class MarkController extends Controller
     public function create()
     {
         $courseAssignmentService = new CourseAssignmentService();
-        $data['assignedCourses'] = $courseAssignmentService->getAssignedCourses();
+        $data['assignedCourses'] = $courseAssignmentService->getThisTeacherAssignedCourses();
         return view('teacher.uploadMarks', $data);
     }
 
@@ -72,7 +71,7 @@ class MarkController extends Controller
     {
 
         $course_id = (int) $request->courseId;
-        $deleted = Mark::where('course_id', $course_id)->delete();    
+        $deleted = Mark::where('course_id', $course_id)->delete();
         return response()->json([ 'message' => $deleted ? 'Records deleted successfully' : 'Something went wrong pls try again!' ], $deleted ? 200 : 400);
     }
 

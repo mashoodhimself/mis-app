@@ -15,4 +15,9 @@ class Result extends Model
     return $this->belongsTo(Course::class);
    }
 
+   public function getThisGradeCountByCourse($course, $grade): int
+   {
+      return (int) $this->where('course_id', $course)->where('grade', $grade)->count();
+   }
+
 }

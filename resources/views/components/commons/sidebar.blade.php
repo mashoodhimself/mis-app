@@ -21,16 +21,17 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Feed
+              </p>
+            </a>
+          </li>
+
           @if(auth()->user()->role === 'admin')
 
-            <li class="nav-item menu-open">
-              <a href="#" class="nav-link active">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p>
-                  Dashboard
-                </p>
-              </a>
-            </li>
             <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-user"></i>
@@ -128,6 +129,14 @@
 
           @if(auth()->user()->role === 'teacher')
               <li class="nav-item">
+                <a href="/attendance/teacher" class="nav-link">
+                  <i class="nav-icon far fa-meh"></i>
+                  <p>
+                    Attendance
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-user-graduate"></i>
                   <p>
@@ -154,16 +163,27 @@
                       <p>Upload Results</p>
                     </a>
                   </li>
+                  <li class="nav-item">
+                    <a href="/results/graph" class="nav-link">
+                      <i class="nav-icon far fa-meh"></i>
+                      <p>
+                        Grade Distribution Graph
+                      </p>
+                    </a>
+                </li>
                 </ul>
+
+                <li class="nav-item">
+                  <a href="/results/graph" class="nav-link">
+                    <i class="nav-icon far fa-meh"></i>
+                    <p>
+                      Discussions
+                    </p>
+                  </a>
+                </li>
+
               </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon far fa-meh"></i>
-                  <p>
-                    Student Results
-                  </p>
-                </a>
-            </li>
+              
           @endif
 
           @if (auth()->user()->role === 'student')

@@ -39,9 +39,11 @@
                                         <label>Course</label>
                                         <select class="form-control" name="course_id" id="course_id">
                                             <option selected disabled>Select Course</option>
-                                            <option value="1">Maths</option>
-                                            <option value="2">English</option>
-                                            <option value="3">Urdu</option>
+                                            @if (!empty($assignedCourses))
+                                                @foreach ($assignedCourses as $course)
+                                                    <option value="{{ $course->id }}"> {{ $course->course_name }} </option>
+                                                @endforeach
+                                            @endif
                                         </select>
                                         @error('course_id')
                                             <small class="text-danger">{{ $message }}</small>
