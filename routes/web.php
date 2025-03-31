@@ -2,11 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\FeedController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AjaxHandlerController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Teacher\MarkController;
-use App\Http\Controllers\Admin\StudentController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\Teacher\ResultController;
 use App\Http\Controllers\Teacher\AttendanceController;
 
@@ -62,9 +63,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/student/delete/{student}', [UserController::class, 'destroyStudent']);
 
-    Route::get('/student/attendance', [StudentController::class, 'attendanceIndex']);
+    Route::get('/student/attendance', [StudentController::class, 'adminAttendanceIndex']);
 
-    Route::post('/student/attendance', [StudentController::class, 'attendanceIndex']);
+    Route::post('/student/attendance', [StudentController::class, 'adminAttendanceIndex']);
 
     Route::get('/courses', [CourseController::class, 'index']);
 
@@ -78,45 +79,52 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/course/delete/{course}', [CourseController::class, 'destroy']);
 
-    Route::get('/attendance/view', [AttendanceController::class, 'index']);
+    Route::get('/attendance/view', [StudentController::class, 'attendanceIndex']);
 
-    Route::post('/attendance/view', [AttendanceController::class, 'index']);
+    Route::post('/attendance/view', [StudentController::class, 'attendanceIndex']);
 
-    Route::get('/attendance/edit/{attendance}', [AttendanceController::class, 'edit']);
+    Route::get('/attendance/edit/{attendance}', [StudentController::class, 'attendanceEdit']);
 
-    Route::post('/attendance/edit/{attendance}', [AttendanceController::class, 'update']);
+    Route::post('/attendance/edit/{attendance}', [StudentController::class, 'attendanceUpdate']);
 
-    Route::get('/attendance/upload', [AttendanceController::class, 'create']);
+    Route::get('/attendance/upload', [StudentController::class, 'attendanceCreate']);
 
     Route::get('/attendance/teacher', [AttendanceController::class, 'indexTeacherAttendance']);
 
-    Route::post('/attendance/upload', [AttendanceController::class, 'store']);
+    Route::post('/attendance/upload', [StudentController::class, 'attendanceStore']);
 
-    Route::get('/marks/view', [MarkController::class, 'index']);
+    Route::get('/marks/view', [StudentController::class, 'marksIndex']);
 
-    Route::post('/marks/view', [MarkController::class, 'index']);
+    Route::post('/marks/view', [StudentController::class, 'marksIndex']);
 
-    Route::get('/marks/upload', [MarkController::class, 'create']);
+    Route::get('/marks/upload', [StudentController::class, 'marksCreate']);
 
-    Route::post('/marks/upload', [MarkController::class, 'store']);
+    Route::post('/marks/upload', [StudentController::class, 'marksStore']);
 
-    Route::get('/results/view', [ResultController::class, 'index']);
+    Route::get('/results/view', [StudentController::class, 'resultIndex']);
 
-    Route::post('/results/view', [ResultController::class, 'index']);
+    Route::post('/results/view', [StudentController::class, 'resultIndex']);
 
-    Route::get('/results/upload', [ResultController::class, 'create']);
+    Route::get('/results/upload', [StudentController::class, 'resultCreate']);
 
-    Route::post('/results/upload', [ResultController::class, 'store']);
+    Route::post('/results/upload', [StudentController::class, 'resultStore']);
 
-    Route::get('/results/graph', [ResultController::class, 'gradeDistributionGraph']);
+    Route::get('/results/graph', [StudentController::class, 'gradeDistributionGraph']);
+
+    Route::get('/feed', [FeedController::class, 'index']);
+    Route::get('/feed/add', [FeedController::class, 'create']);
+    Route::post('/feed/add', [FeedController::class, 'store']);
+    Route::get('/feed/edit/{feed}', [FeedController::class, 'edit']);
+    Route::post('/feed/edit', [FeedController::class, 'update']);
+    Route::get('/feed/destroy/{feed}', [FeedController::class, 'destroy']);
 
     /** Ajax Related Routes */
     Route::post('/marks/detail', [AjaxHandlerController::class, 'getMarksById']);
-    Route::post('/attendance/destroy', [AttendanceController::class, 'destroy']);
-    Route::post('/marks/destroy', [MarkController::class, 'destroy']);
-    Route::post('/results/destroy', [ResultController::class, 'destroy']);
+    Route::post('/attendance/destroy', [StudentController::class, 'attendanceDestroy']);
+    Route::post('/marks/destroy', [StudentController::class, 'marksDestroy']);
+    Route::post('/results/destroy', [StudentController::class, 'resultDestroy']);
     Route::post('/attendance/teacher', [AttendanceController::class, 'storePunchInAttendanceAjax']);
-    Route::post('/results/graph', [ResultController::class, 'getGradeCountByCourseId']);
+    Route::post('/results/graph', [StudentController::class, 'getGradeCountByCourseId']);
     /** Ajax Routes End */
 
 });

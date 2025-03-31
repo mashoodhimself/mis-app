@@ -7,9 +7,15 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class ExcelService 
 {
-    public static function readAndProcessAttendanceFile($course_id, $attendanceFile, $attendance_date): array
+    public static function readAndProcessAttendanceFile($requestData): array
     {
-        $excelRecords = Excel::toArray(new Collection(), $attendanceFile)[0];
+        $course_id = $requestData['course_id'];
+
+        $attendance_date = $requestData['attendance_date'];
+
+        $attendance_file = $requestData['attendance_file'];
+
+        $excelRecords = Excel::toArray(new Collection(), $attendance_file)[0];
 
         $attendanceData = [];
 
@@ -33,8 +39,11 @@ class ExcelService
         return $attendanceData;
     }
 
-    public static function readAndProcessMarksFile($course_id, $marksFile): array
+    public static function readAndProcessMarksFile($validatedRequest): array
     {
+        $course_id = $validatedRequest['course_id'];
+        $marksFile = $validatedRequest['marks_file'];
+
         $excelRecords = Excel::toArray(new Collection(), $marksFile)[0];
 
         $marksData = [];
@@ -109,8 +118,11 @@ class ExcelService
         return $marksData;
     }
 
-    public static function readAndProcessResultsFile($course_id, $resultsFile)
+    public static function readAndProcessResultsFile($validatedRequest)
     {
+        $course_id = $validatedRequest['course_id'];
+        $resultsFile = $validatedRequest['results_file'];
+
         $excelRecords = Excel::toArray(new Collection(), $resultsFile)[0];
 
         $resultsData = [];
