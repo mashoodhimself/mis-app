@@ -25,23 +25,13 @@ class StudentController extends Controller
         $this->courseAssignmentService = new CourseAssignmentService();
     }
 
-    public function attendanceIndex(Request $request)
+    public function attendanceIndex($course_id)
     {
-
         $data = [];
-
-        if ($request->method() === 'POST') {
-            $course_id = $request->course;
-            $results = Attendance::with('course')->select('id', 'course_id', 'registration_no', 'student_name', 'semester', 'section', 'attendance', 'attendance_date')->where('course_id', $course_id)->get();
-            $data['course_id'] = (int) $course_id;
-            $data['attendanceRecords'] = $results;
-            $data['courses'] = $this->courseAssignmentService->getThisTeacherCoursesHavingAttendance(auth()->user()->id);
-
-        } else {
-            $results = Attendance::with('course')->select('id', 'course_id', 'registration_no', 'student_name', 'semester', 'section', 'attendance', 'attendance_date')->get();
-            $data['attendanceRecords'] = $results;
-            $data['courses'] = $this->courseAssignmentService->getThisTeacherCoursesHavingAttendance(auth()->user()->id);
-        }
+        $results = Attendance::with('course')->select('id', 'course_id', 'registration_no', 'student_name', 'semester', 'section', 'attendance', 'attendance_date')->where('course_id', $course_id)->get();
+        $data['course_id'] = (int) $course_id;
+        $data['attendanceRecords'] = $results;
+        $data['courses'] = $this->courseAssignmentService->getThisTeacherCoursesHavingAttendance(auth()->user()->id);
 
         return view('teacher.viewAttendance', $data);
     }
@@ -61,9 +51,9 @@ class StudentController extends Controller
         return view('admin.studentAttendance', $data);
     }
 
-    public function attendanceCreate()
+    public function attendanceCreate($course_id)
     {
-        $data['assignedCourses'] = $this->courseAssignmentService->getThisTeacherAssignedCourses();
+        $data['course_id'] = $course_id;
         return view('teacher.uploadAttendance', $data);
     }
 
@@ -71,7 +61,7 @@ class StudentController extends Controller
     {
         $validatedData = $request->validated();
         $responseData = CreateAttendance::handle($validatedData);
-        return redirect('attendance/upload')->with($responseData['status'], $responseData['message']);
+        return redirect('teacher/course')->with($responseData['status'], $responseData['message']);
     }
 
     public function attendanceEdit(Attendance $attendance)
@@ -92,31 +82,21 @@ class StudentController extends Controller
         return response()->json([ 'message' => $deleted ? 'Records deleted successfully' : 'Something went wrong pls try again!' ], $deleted ? 200 : 400);
     }
 
-    public function marksIndex(Request $request)
+    public function marksIndex($course_id)
     {
-
         $data = [];
 
-        if ($request->method() === 'POST') {
-            $course_id = $request->course;
-            $results = Mark::with('course')->select('id', 'course_id', 'registration_no', 'final_sessional_marks', 'mid_term_marks', 'created_at')->where('course_id', $course_id)->get();
-            $data['course_id'] = (int) $course_id;
-            $data['marks'] = $results;
-            $data['courses'] = $this->courseAssignmentService->getThisTeacherCoursesHavingMarks(auth()->user()->id);
-
-        } else {
-            $results = Mark::with('course')->select('id', 'course_id', 'registration_no', 'final_sessional_marks', 'mid_term_marks', 'created_at')->get();
-            $data['marks'] = $results;
-            $data['courses'] = $this->courseAssignmentService->getThisTeacherCoursesHavingMarks(auth()->user()->id);
-        }
+        $results = Mark::with('course')->select('id', 'course_id', 'registration_no', 'final_sessional_marks', 'mid_term_marks', 'created_at')->where('course_id', $course_id)->get();
+        $data['course_id'] = (int) $course_id;
+        $data['marks'] = $results;
+        $data['courses'] = $this->courseAssignmentService->getThisTeacherCoursesHavingMarks(auth()->user()->id);
 
         return view('teacher.viewMarks', $data);
     }
 
-    public function marksCreate()
+    public function marksCreate($course_id)
     {
-        $courseAssignmentService = new CourseAssignmentService();
-        $data['assignedCourses'] = $courseAssignmentService->getThisTeacherAssignedCourses();
+        $data['course_id'] = $course_id;
         return view('teacher.uploadMarks', $data);
     }
 
@@ -124,7 +104,7 @@ class StudentController extends Controller
     {
         $validatedData = $request->validated();
         $responseData = CreateMarks::handle($validatedData);
-        return redirect('marks/upload')->with($responseData['status'], $responseData['message']);
+        return redirect('teacher/course')->with($responseData['status'], $responseData['message']);
     }
 
     public function marksDestroy(Request $request)
@@ -134,30 +114,23 @@ class StudentController extends Controller
         return response()->json([ 'message' => $deleted ? 'Records deleted successfully' : 'Something went wrong pls try again!' ], $deleted ? 200 : 400);
     }
 
-    public function resultIndex(Request $request)
+    public function resultIndex($course_id)
     {
 
         $data = [];
 
-        if ($request->method() === 'POST') {
-            $course_id = $request->course;
-            $results = Result::with('course')->select('id', 'course_id', 'registration_no', 'sessional_marks', 'midterm_marks', 'final_marks', 'final_score', 'normalized_score', 'grade', 'gpa', 'created_at')->where('course_id', $course_id)->get();
-            $data['course_id'] = (int) $course_id;
-            $data['results'] = $results;
-            $data['courses'] = $this->courseAssignmentService->getThisTeacherCoursesHavingResults(auth()->user()->id);
+        $results = Result::with('course')->select('id', 'course_id', 'registration_no', 'sessional_marks', 'midterm_marks', 'final_marks', 'final_score', 'normalized_score', 'grade', 'gpa', 'created_at')->where('course_id', $course_id)->get();
+        $data['course_id'] = (int) $course_id;
+        $data['results'] = $results;
+        $data['courses'] = $this->courseAssignmentService->getThisTeacherCoursesHavingResults(auth()->user()->id);
 
-        } else {
-            $results = Result::with('course')->select('id', 'course_id', 'registration_no', 'sessional_marks', 'midterm_marks', 'final_marks', 'final_score', 'normalized_score', 'grade', 'gpa', 'created_at')->get();
-            $data['results'] = $results;
-            $data['courses'] = $this->courseAssignmentService->getThisTeacherCoursesHavingResults(auth()->user()->id);
-        }
 
         return view('teacher.viewResults', $data);
     }
 
-    public function resultCreate()
+    public function resultCreate($course_id)
     {
-        $data['assignedCourses'] = $this->courseAssignmentService->getThisTeacherAssignedCourses();
+        $data['course_id'] = $course_id;
         return view('teacher.uploadResults', $data);
     }
 
@@ -165,12 +138,12 @@ class StudentController extends Controller
     {
         $validatedData = $request->validated();
         $responseData = CreateResult::handle($validatedData);
-        return redirect('results/upload')->with($responseData['status'], $responseData['message']);
+        return redirect('teacher/course')->with($responseData['status'], $responseData['message']);
     }
 
-    public function gradeDistributionGraph()
+    public function gradeDistributionGraph($course_id)
     {
-        $data['courses'] = $this->courseAssignmentService->getThisTeacherCoursesHavingResults(auth()->user()->id);
+        $data['course_id'] = $course_id;
         return view('teacher.gradeDistributionGraph', $data);
     }
 

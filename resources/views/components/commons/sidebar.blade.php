@@ -137,6 +137,14 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="/teacher/course" class="nav-link">
+                  <i class="nav-icon far fa-meh"></i>
+                  <p>
+                    Courses
+                  </p>
+                </a>
+              </li>
+              {{-- <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-user-graduate"></i>
                   <p>
@@ -182,7 +190,7 @@
                   </a>
                 </li>
 
-              </li>
+              </li> --}}
               
           @endif
 

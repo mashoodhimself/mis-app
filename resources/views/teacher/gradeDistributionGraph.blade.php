@@ -24,39 +24,6 @@
                             <x-extras.error-alert :message="session('error')" />
                         @endif
 
-                        <div class="card-body">
-
-                            <form action="javascript:void(0)" method="POST">
-
-                                @csrf
-
-                                <div class="row mb-3">
-                                    <div class="col-md-12">
-                                        <label>Course</label>
-                                        <select class="form-control" name="course_id" id="course_id">
-                                            <option selected disabled>Select Course</option>
-                                            @if (!empty($courses))
-                                                @foreach ($courses as $courseItem)
-                                                    <option {{ !empty($course_id) && $course_id === $courseItem->id ? 'selected' : '' }} value="{{ $courseItem->id }}"> {{ $courseItem->title }} </option>
-                                                @endforeach
-                                            @endif
-                                        </select>
-                                        @error('course_id')
-                                            <small class="text-danger">{{ $message }}</small>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <button id="view_graph" class="btn btn-primary" > View Graph </button>
-                                    </div>
-                                </div>
-
-                            </form>
-
-                        </div>
-
                         <div class="row">
                             <div class="col-md-12">
                                 <canvas id="gradeDistributionGraphCanvas"></canvas>
@@ -78,17 +45,8 @@
 <script>
 
     $(document).ready(function() {
-        
-        $('#view_graph').click(function(event) {
 
-            event.preventDefault();
-
-            let course_id = $('#course_id').val();
-
-            if (course_id === null) {
-                alert('Please select a course');
-                return;
-            }
+            let course_id = "{{ $course_id }}";
 
             $.ajax({
                 url: '/results/graph',
@@ -100,6 +58,7 @@
                 success: function(response) {
                     
                     let parsedResponse = JSON.parse(response);
+
                     let ctx = document.getElementById('gradeDistributionGraphCanvas');
                     let myChart = new Chart(ctx, {
                         type: 'bar',
@@ -121,31 +80,8 @@
                     });
                 }
             });
-        });
+
 
     });
 
-</script>
-
-<script>
-//     const ctx = document.getElementById('gradeDistributionGraphCanvas');
-
-// new Chart(ctx, {
-//   type: 'bar',
-//   data: {
-//     labels: ['A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D+', 'D', 'F'],
-//     datasets: [{
-//       label: '# of Students',
-//       data: [12, 30, 3, 5, 2, 3],
-//       borderWidth: 1
-//     }]
-//   },
-//   options: {
-//     scales: {
-//       y: {
-//         beginAtZero: true
-//       }
-//     }
-//   }
-// });
 </script>

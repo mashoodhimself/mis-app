@@ -17,28 +17,6 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <div class="jumbotron jumbotron-fluid">
-                                <div class="container">
-                                  <h1 class="display-4">Filter By Course</h1>
-                                  <p class="lead">
-                                    <form action="/results/view" method="POST">
-                                        @csrf
-                                        <select class="form-control" name="course" id="course">
-                                            <option selected disabled value="">Select Course</option>
-                                            @if (!empty($courses))
-                                                @foreach ($courses as $courseItem)
-                                                    <option {{ !empty($course_id) && $course_id === $courseItem->id ? 'selected' : '' }} value="{{ $courseItem->id }}"> {{ $courseItem->title }} </option>
-                                                @endforeach
-                                            @endif
-                                        </select>
-                                        <button type="submit" class="mt-2 btn btn-warning" >Filter</button>
-                                        <button type="button" class="mt-2 btn btn-danger deleteCourseBtn" >Delete</button>
-                                    </form>
-                                    <div class="mt-3 text-danger message-box"></div>
-                                  </p>
-                                </div>
-                            </div>
-
                             <table style="width:100%;" id="marks-table" class="table table-striped table-responsive">
                                 <thead>
                                     <tr>

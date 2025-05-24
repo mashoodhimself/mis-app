@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Teacher\TeacherCourseController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FeedController;
@@ -79,37 +80,33 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/course/delete/{course}', [CourseController::class, 'destroy']);
 
-    Route::get('/attendance/view', [StudentController::class, 'attendanceIndex']);
-
-    Route::post('/attendance/view', [StudentController::class, 'attendanceIndex']);
+    Route::get('/attendance/view/{course_id}', [StudentController::class, 'attendanceIndex']);
 
     Route::get('/attendance/edit/{attendance}', [StudentController::class, 'attendanceEdit']);
 
     Route::post('/attendance/edit/{attendance}', [StudentController::class, 'attendanceUpdate']);
 
-    Route::get('/attendance/upload', [StudentController::class, 'attendanceCreate']);
+    Route::get('/attendance/upload/{course_id}', [StudentController::class, 'attendanceCreate']);
 
     Route::get('/attendance/teacher', [AttendanceController::class, 'indexTeacherAttendance']);
 
     Route::post('/attendance/upload', [StudentController::class, 'attendanceStore']);
 
-    Route::get('/marks/view', [StudentController::class, 'marksIndex']);
+    Route::get('/marks/view/{course_id}', [StudentController::class, 'marksIndex']);
 
-    Route::post('/marks/view', [StudentController::class, 'marksIndex']);
-
-    Route::get('/marks/upload', [StudentController::class, 'marksCreate']);
+    Route::get('/marks/upload/{course_id}', [StudentController::class, 'marksCreate']);
 
     Route::post('/marks/upload', [StudentController::class, 'marksStore']);
 
-    Route::get('/results/view', [StudentController::class, 'resultIndex']);
+    Route::get('/results/view/{course_id}', [StudentController::class, 'resultIndex']);
 
-    Route::post('/results/view', [StudentController::class, 'resultIndex']);
-
-    Route::get('/results/upload', [StudentController::class, 'resultCreate']);
+    Route::get('/results/upload/{course_id}', [StudentController::class, 'resultCreate']);
 
     Route::post('/results/upload', [StudentController::class, 'resultStore']);
 
-    Route::get('/results/graph', [StudentController::class, 'gradeDistributionGraph']);
+    Route::get('/results/graph/{course_id}', [StudentController::class, 'gradeDistributionGraph']);
+
+    Route::get('/teacher/course', [TeacherCourseController::class, 'index']);
 
     Route::get('/feed', [FeedController::class, 'index']);
     Route::get('/feed/add', [FeedController::class, 'create']);
