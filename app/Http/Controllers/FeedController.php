@@ -9,7 +9,7 @@ class FeedController extends Controller
 {
     public function index()
     {
-        $feeds = Feed::select('id', 'user_id', 'title', 'description')->get();
+        $feeds = Feed::with('user')->select('id', 'user_id', 'title', 'description')->get();
         return view('feed', ['feeds' => $feeds]);
     }
 

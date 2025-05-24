@@ -144,54 +144,6 @@
                   </p>
                 </a>
               </li>
-              {{-- <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon fas fa-user-graduate"></i>
-                  <p>
-                    Students
-                    <i class="fas fa-angle-left right"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="/attendance/upload" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Upload Attendance</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="/marks/upload" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Upload Marks</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="/results/upload" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Upload Results</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="/results/graph" class="nav-link">
-                      <i class="nav-icon far fa-meh"></i>
-                      <p>
-                        Grade Distribution Graph
-                      </p>
-                    </a>
-                </li>
-                </ul>
-
-                <li class="nav-item">
-                  <a href="/results/graph" class="nav-link">
-                    <i class="nav-icon far fa-meh"></i>
-                    <p>
-                      Discussions
-                    </p>
-                  </a>
-                </li>
-
-              </li> --}}
-              
           @endif
 
           @if (auth()->user()->role === 'student')
@@ -250,14 +202,14 @@
 
           @endif
 
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon far fa-meh"></i>
               <p>
                 My Profile
               </p>
             </a>
-          </li>
+          </li> --}}
           <li class="nav-item">
             <a href="/logout" class="nav-link">
               <i class="nav-icon fas fa-sign-out-alt"></i>

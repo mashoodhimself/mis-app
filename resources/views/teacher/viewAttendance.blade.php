@@ -16,7 +16,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
-                            <table id="attendance-table" class="table table-striped table-responsive">
+                            <table style="width:100%;" id="attendance-table" class="table table-striped">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
@@ -27,7 +27,6 @@
                                         <th>SECTION</th>
                                         <th>ATTENDANCE</th>
                                         <th>DATE</th>
-                                        <th>ACTION</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -41,7 +40,6 @@
                                             <td>{{ $attendanceRecord->section }}</td>
                                             <td>{{ $attendanceRecord->attendance }}</td>
                                             <td>{{ $attendanceRecord->attendance_date }}</td>
-                                            <td><a href="/attendance/edit/{{ $attendanceRecord->id }}"><i class="fas fa-edit"></i></a></td>
                                         </tr>
                                     @endforeach
                                 </tbody>

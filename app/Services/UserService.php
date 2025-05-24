@@ -17,14 +17,7 @@ class UserService
 
     public static function getStudentNameOnRegistrationNo($registration_no)
     {
-        $queryResult = DB::table('users')
-            ->join('user_metas', 'users.id', '=', 'user_metas.user_id')
-            ->where('user_metas.key', 'registration_no')
-            ->where('user_metas.value', $registration_no)
-            ->select('users.name as student_name')
-            ->get();
-
-        return $queryResult[0]->student_name;
-
+        $user = User::select('name')->where('registration_no', $registration_no)->first();
+        return $user->name;
     }
 }
