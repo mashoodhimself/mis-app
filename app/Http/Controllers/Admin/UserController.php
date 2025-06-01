@@ -55,6 +55,9 @@ class UserController extends Controller
             'full_name' => 'required',
             'username' => 'required|unique:users',
             'email' => 'required|unique:users',
+            'registration_no' => 'required|unique:users',
+            'semester' => 'required',
+            'section' => 'required',
             'password' => 'required'
         ]);
 
@@ -62,6 +65,9 @@ class UserController extends Controller
             'name' => $request->full_name,
             'username' => $request->username,
             'email' => $request->email,
+            'registration_no' => $request->registration_no,
+            'semester' => $request->semester,
+            'section' => $request->section,
             'password' => bcrypt($request->password),
             'role' => 'student' 
         ]);
@@ -105,6 +111,9 @@ class UserController extends Controller
             'name' => $request->full_name,
             'email' => $request->email,
             'username' => $request->username,
+            'registration_no' => $request->registration_no,
+            'semester' => $request->semester,
+            'section' => $request->section,
             'password' => $request->password
         ]);
 

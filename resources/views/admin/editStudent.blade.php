@@ -41,6 +41,44 @@
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col-md-12">
+                                        <input type="text" name="registration_no" id="registration_no" class="form-control" value="{{ $student->registration_no }}" placeholder="Registraion No">
+                                        @error('registration_no')
+                                            <small class="text-danger"> {{ $message }} </small>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-12">
+                                        <select name="semester" required id="semester" class="form-control">
+                                            <option disabled selected>Select semester</option>
+                                            <option {{ $student->semester === '1st' ? 'selected' : '' }}  value="1st">1st</option>
+                                            <option {{ $student->semester === '2nd' ? 'selected' : '' }}  value="2nd">2nd</option>
+                                            <option {{ $student->semester === '3rd' ? 'selected' : '' }}  value="3rd">3rd</option>
+                                            <option {{ $student->semester === '4th' ? 'selected' : '' }}  value="4th">4th</option>
+                                            <option {{ $student->semester === '5th' ? 'selected' : '' }}  value="5th">5th</option>
+                                            <option {{ $student->semester === '6th' ? 'selected' : '' }}  value="6th">6th</option>
+                                            <option {{ $student->semester === '7th' ? 'selected' : '' }}  value="7th">7th</option>
+                                            <option {{ $student->semester === '8th' ? 'selected' : '' }}  value="8th">8th</option>
+                                        </select>
+                                        @error('semester')
+                                            <small class="text-danger"> {{ $message }} </small>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-12">
+                                        <select name="section" required id="section" class="form-control">
+                                            <option disabled selected>Select section</option>
+                                            <option {{ $student->section === 'A' ? 'selected' : '' }} value="A">A</option>
+                                            <option {{ $student->section === 'B' ? 'selected' : '' }} value="B">B</option>
+                                        </select>
+                                        @error('section')
+                                            <small class="text-danger"> {{ $message }} </small>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-12">
                                         <input type="password" name="password" id="password" class="form-control" value="{{ $student->password }}" placeholder="Password">
                                     </div>
                                 </div>

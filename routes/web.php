@@ -68,6 +68,8 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/student/attendance', [StudentController::class, 'adminAttendanceIndex']);
 
+    Route::get('/student/marks', [StudentController::class, 'adminMarksIndex']);
+
     Route::get('/courses', [CourseController::class, 'index']);
 
     Route::get('/course/add', [CourseController::class, 'create']);
@@ -113,7 +115,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/feed/add', [FeedController::class, 'store']);
     Route::get('/feed/edit/{feed}', [FeedController::class, 'edit']);
     Route::post('/feed/edit', [FeedController::class, 'update']);
-    Route::get('/feed/destroy/{feed}', [FeedController::class, 'destroy']);
+    Route::delete('/feed/destroy/{feed}', [FeedController::class, 'destroy']);
 
     /** Ajax Related Routes */
     Route::post('/marks/detail', [AjaxHandlerController::class, 'getMarksById']);

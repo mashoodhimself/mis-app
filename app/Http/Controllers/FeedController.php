@@ -41,10 +41,13 @@ class FeedController extends Controller
             'title' => $request->feed_title,
             'description' => $request->feed_desc,
         ]);
+
+        return redirect('/feed');
     }
 
     public function destroy(Feed $feed)
     {
         $feed->delete();
+        return redirect('/feed');
     }
 }

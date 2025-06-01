@@ -43,12 +43,31 @@ class StudentController extends Controller
 
         if($request->method() === 'POST') {
             $attendanceModel = new Attendance();
-            $attendanceByCourse = $attendanceModel->select('id', 'registration_no', 'student_name', 'semester', 'section', 'attendance', 'attendance_date')->where('course_id', $request->course_id)->get();
+            $attendanceByCourse = $attendanceModel->select('id', 'registration_no', 'student_name', 'semester', 'section', 'attendance', 'attendance_date')
+                                                ->where('course_id', $request->course_id)
+                                                ->when($request->attendance_date, function($query, $date) {
+                                                    return $query->where('attendance_date', $date);
+                                                })->get();
             $data['course_id'] = (int) $request->course_id;
             $data['attendance'] = $attendanceByCourse;
         } 
 
         return view('admin.studentAttendance', $data);
+    }
+
+    public function adminMarksIndex(Request $request)
+    {
+        $courseAssignmentService = new CourseAssignmentService();
+        $data['assignedCourses'] = $courseAssignmentService->getAssignedCourses();
+
+        if($request->method() === 'POST') {
+            $marksModel = new Mark();
+            $marksByCourse = $marksModel->select('id', 'registration_no', 'student_name', 'semester', 'section', 'attendance', 'attendance_date')->where('course_id', $request->course_id)->get();
+            $data['course_id'] = (int) $request->course_id;
+            $data['marks'] = $marksByCourse;
+        } 
+
+        return view('admin.studentMarks', $data);
     }
 
     public function attendanceCreate($course_id)

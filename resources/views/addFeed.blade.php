@@ -8,7 +8,7 @@
 
 <div class="content-wrapper">
 
-    <x-commons.content-header title="Add Feed" />
+    <x-commons.content-header title="Create Annoucement" />
 
     <div class="content">
         <div class="container-fluid">
@@ -32,13 +32,13 @@
 
                                 <div class="row">
                                     <div class="col-md-12 mb-3">
-                                        <input type="text" name="feed_title" class="form-control" />
+                                        <input type="text" name="feed_title" class="form-control" placeholder="Enter title here." />
                                     </div>
                                 </div>
 
                                 <div class="row mb-3">
                                     <div class="col-md-12">
-                                        <textarea name="feed_desc" rows="12" cols="20"  class="form-control" ></textarea>
+                                        <textarea name="feed_desc" rows="12" cols="20"  class="form-control" placeholder="Enter description here.."></textarea>
                                     </div>
                                 </div>
 

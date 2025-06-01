@@ -7,7 +7,7 @@
 <x-commons.sidebar />
 
 <div class="content-wrapper">
-    <x-commons.content-header title="Student Attendance" />
+    <x-commons.content-header title="Student Marks" />
 
     <div class="content">
         <div class="container-fluid">
@@ -15,7 +15,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="mt-4 mx-3 mb-3">                            
-                            <form action="/student/attendance" method="POST">
+                            <form action="/student/marks" method="POST">
                                 @csrf
                                 <div class="row mb-3">
                                     <div class="col-md-6">
@@ -39,7 +39,7 @@
                         </div>
                     </div>
 
-                    @if (isset($attendance) && $attendance->isNotEmpty())
+                    @if (isset($marks) && $marks->isNotEmpty())
                         <div class="card">
                             <table id="student-attendance" class="table table-striped">
                                     <thead>
