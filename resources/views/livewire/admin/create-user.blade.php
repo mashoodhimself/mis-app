@@ -18,7 +18,7 @@
                     @endif
 
                     <div class="mt-4 mx-3 mb-3">
-                        <a style="border-radius:0px;" class="btn btn-primary" href="/teachers"><i class="fas fa-plus"></i>
+                        <a style="border-radius:0px;" class="btn btn-primary" wire:navigate href="{{ route('admin.users') }}"><i class="fas fa-plus"></i>
                             Back</a>
                     </div>
 
@@ -74,7 +74,7 @@
                             </div>
                             <div class="row mb-3">
                                 <div class="col-md-12">
-                                    <select wire:model="user_role" id="user_role" class="form-control">
+                                    <select wire:model.live="user_role" id="user_role" class="form-control">
                                         <option value="teacher">Teacher</option>
                                         <option value="student">Student</option>
                                     </select>

@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Teacher\TeacherCourseController;
+use App\Livewire\Admin\CreateUser;
+use App\Livewire\Admin\ViewUser;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FeedController;
@@ -40,11 +42,15 @@ Route::middleware('auth')->group(function () {
         return redirect('/login');
     });
 
-    Route::get('/teachers', [UserController::class, 'viewTeachers']);
+
+    /* Livewire Routes Start */
+        Route::get('/users', ViewUser::class)->name('admin.users'); 
+        Route::get('/user/add', CreateUser::class)->name('admin.user.add');
+    /* Livewire Routes End */
+
 
     Route::get('/students', [UserController::class, 'viewStudents']);
 
-    Route::get('/teacher/add', [UserController::class, 'viewTeacherAdd']);
 
     Route::post('/teacher/add', [UserController::class, 'storeTeacher']);
 

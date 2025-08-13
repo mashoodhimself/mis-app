@@ -20,8 +20,6 @@
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="{{ asset('assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }} ">
 
-  @livewireStyles
-
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">

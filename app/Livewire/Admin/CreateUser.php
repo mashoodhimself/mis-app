@@ -1,23 +1,22 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire\Admin;
 
-use App\Services\UserService;
 use Exception;
 use Livewire\Component;
-use App\Models\User as UserModel;
+use App\Services\UserService;
 
-class User extends Component
+class CreateUser extends Component
 {
     public $full_name;
     public $username;
     public $email;
     public $password;
     public $confirm_password;
-    public $user_role = 'teacher';
-    public $isStudent = false;
-    public $semester = '1st';
-    public $section = 'A';
+    public $user_role;
+    public $isStudent;
+    public $semester;
+    public $section;
     public $registration_no;
     public $operationStatus;
 
@@ -33,16 +32,23 @@ class User extends Component
         'section' => 'required'
     ];
 
+    public function mount()
+    {
+        $this->user_role = 'teacher';
+        $this->semester = '1st';
+        $this->section = 'A';
+        $this->isStudent = false;
+    }
 
     public function render()
     {
-        return view('livewire.user');
+        return view('livewire.admin.create-user')->layout('layouts.app');
     }
 
     public function updatedUserRole($value)
     {
         $this->isStudent = $value === 'student';
-        if(!$this->isStudent) {
+        if (!$this->isStudent) {
             $this->reset('registration_no', 'semester', 'section');
         }
     }
@@ -50,6 +56,9 @@ class User extends Component
     public function save()
     {
         $validated = $this->validate();
+
+        dd($validated);
+
         $validated['isStudent'] = $this->isStudent;
 
         try {
@@ -67,5 +76,4 @@ class User extends Component
         }
 
     }
-
 }

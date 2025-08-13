@@ -8,7 +8,7 @@
 
 <div class="content-wrapper">
     <x-commons.content-header title="Add New Teacher" />
-    <livewire:user />          
+    <livewire:admin.create-user />          
 </div>
 
 <x-commons.footer />
