@@ -8,12 +8,10 @@ use App\Services\UserService;
 
 class CreateUser extends Component
 {
-    public $full_name;
+    public $name;
     public $username;
     public $email;
-    public $password;
-    public $confirm_password;
-    public $user_role;
+    public $role;
     public $isStudent;
     public $semester;
     public $section;
@@ -21,20 +19,18 @@ class CreateUser extends Component
     public $operationStatus;
 
     protected $rules = [
-        'full_name' => 'required|string|max:255',
+        'name' => 'required|string|max:255',
         'username' => 'required|string|max:50|unique:users,username',
         'email' => 'required|email|unique:users,email',
-        'password' => 'required|min:8|same:confirm_password',
-        'confirm_password' => 'required|min:8',
-        'user_role' => 'required',
-        'registration_no' => 'required_if:user_role,student',
+        'role' => 'required',
+        'registration_no' => 'required_if:role,student',
         'semester' => 'required',
         'section' => 'required'
     ];
 
     public function mount()
     {
-        $this->user_role = 'teacher';
+        $this->role = 'teacher';
         $this->semester = '1st';
         $this->section = 'A';
         $this->isStudent = false;
@@ -45,7 +41,7 @@ class CreateUser extends Component
         return view('livewire.admin.create-user')->layout('layouts.app');
     }
 
-    public function updatedUserRole($value)
+    public function updatedRole($value)
     {
         $this->isStudent = $value === 'student';
         if (!$this->isStudent) {
@@ -56,9 +52,6 @@ class CreateUser extends Component
     public function save()
     {
         $validated = $this->validate();
-
-        dd($validated);
-
         $validated['isStudent'] = $this->isStudent;
 
         try {
@@ -66,12 +59,12 @@ class CreateUser extends Component
             session()->flash('success', 'User created successfully...');
 
         } catch (Exception $e) {
-            session()->flash('error', 'User created successfully...');
+            session()->flash('error', 'Something went wrong while creating a user, pls try again later.');
             \Log::error("Error occured while creating a user: " . $e->getMessage());
 
         } finally {
-            $this->reset('full_name', 'username', 'email', 'password', 'confirm_password', 'user_role', 'registration_no', 'semester', 'section');
-            $this->user_role = 'teacher';
+            $this->reset('name', 'username', 'email', 'role', 'registration_no', 'semester', 'section');
+            $this->role = 'teacher';
             $this->isStudent = false;
         }
 

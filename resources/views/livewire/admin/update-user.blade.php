@@ -1,9 +1,8 @@
 <div class="content">
-    <x-commons.content-header title="Add New User" />
+    <x-commons.content-header title="Update User" />
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-
                 <div class="card">
 
                     @if (session('success'))
@@ -19,40 +18,30 @@
                     @endif
 
                     <div class="mt-4 mx-3 mb-3">
-                        <a style="border-radius:0px;" class="btn btn-primary" wire:navigate href="{{ route('admin.users') }}"><i class="fas fa-plus"></i>
-                            Back</a>
+                        <a style="border-radius:0px;" class="btn btn-primary" wire:navigate
+                            href="{{ route('admin.users') }}"><i class="fas fa-plus"></i> Back</a>
                     </div>
 
                     <div class="card-body">
 
-                        <form wire:submit.prevent="save">
+                        <form wire:submit.prevent="update">
 
                             <div class="row mb-3">
                                 <div class="col-md-12">
                                     <input type="text" wire:model="name" id="name" class="form-control"
-                                        placeholder="Full name" autocomplete="off">
-                                    @error('name')
-                                        <small class="text-danger">{{ $message }}</small>
-                                    @enderror
-
+                                        value="{{ $user->name }}" placeholder="Full name">
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <div class="col-md-12">
                                     <input type="text" wire:model="username" id="username" class="form-control"
-                                        placeholder="Username" autocomplete="off" >
-                                    @error('username')
-                                        <small class="text-danger">{{ $message }}</small>
-                                    @enderror
+                                        value="{{ $user->username }}" placeholder="Username">
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <div class="col-md-12">
                                     <input type="email" wire:model="email" id="email" class="form-control"
-                                        placeholder="Email Address" autocomplete="off">
-                                    @error('email')
-                                        <small class="text-danger">{{ $message }}</small>
-                                    @enderror
+                                        value="{{ $user->email }}" placeholder="Email Address">
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -63,12 +52,11 @@
                                     </select>
                                 </div>
                             </div>
-
                             @if ($isStudent === true)
-
                                 <div class="row mb-3">
                                     <div class="col-md-12">
-                                        <input type="text" class="form-control" wire:model="registration_no" id="registration_no" placeholder="Registration No">
+                                        <input type="text" class="form-control" wire:model="registration_no"
+                                            id="registration_no" placeholder="Registration No">
                                         @error('registration_no')
                                             <small class="text-danger">{{ $message }}</small>
                                         @enderror
@@ -99,10 +87,9 @@
                                     </div>
                                 </div>
                             @endif
-
                             <div class="row mb-3">
                                 <div class="col-md-12">
-                                    <button style="border-radius: 0px" class="btn btn-primary border-0">Create</button>
+                                    <button style="border-radius: 0px" class="btn btn-primary border-0">Update</button>
                                 </div>
                             </div>
                         </form>

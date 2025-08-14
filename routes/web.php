@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Teacher\TeacherCourseController;
 use App\Livewire\Admin\CreateUser;
+use App\Livewire\Admin\UpdateUser;
 use App\Livewire\Admin\ViewUser;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -46,6 +47,7 @@ Route::middleware('auth')->group(function () {
     /* Livewire Routes Start */
         Route::get('/users', ViewUser::class)->name('admin.users'); 
         Route::get('/user/add', CreateUser::class)->name('admin.user.add');
+        Route::get('/user/edit/{user}', UpdateUser::class)->name('admin.update.user');
     /* Livewire Routes End */
 
 
