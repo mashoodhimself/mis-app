@@ -8,14 +8,23 @@ use App\Services\UserService;
 
 class CreateUser extends Component
 {
+    #[Locked]
     public $name;
+    #[Locked]
     public $username;
+    #[Locked]
     public $email;
+    #[Locked]
     public $role;
+    #[Locked]
     public $isStudent;
+    #[Locked]
     public $semester;
+    #[Locked]
     public $section;
+    #[Locked]
     public $registration_no;
+    #[Locked]
     public $operationStatus;
 
     protected $rules = [

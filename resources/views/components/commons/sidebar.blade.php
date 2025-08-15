@@ -49,7 +49,7 @@
           @if(auth()->user()->role === 'admin')
 
             <li class="nav-item">
-              <a wire:navigate href="{{ route('admin.users') }}" class="nav-link">
+              <a href="{{ route('admin.users') }}" wire:navigate class="nav-link">
                 <i class="nav-icon fas fa-user"></i>
                 <p>
                   Users
