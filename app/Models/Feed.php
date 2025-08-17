@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Feed extends Model
 {
 
-    protected $fillable = ['user_id', 'title', 'description', 'audiance'];
+    protected $fillable = ['user_id', 'title', 'description', 'audiance', 'attachment'];
 
     public function user()
     {

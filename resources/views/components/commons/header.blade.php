@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="{{ asset('assets/dist/css/adminlte.min.css') }} ">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="{{ asset('assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }} ">
-
+  
   <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
 </head>

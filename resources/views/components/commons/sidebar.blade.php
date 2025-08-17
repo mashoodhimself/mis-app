@@ -37,7 +37,7 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="/feed/add" class="nav-link">
+                  <a href="{{ route('admin.feed.add') }}" wire:navigate class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Add</p>
                   </a>
@@ -57,21 +57,12 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="{{ route('admin.courses') }}" wire:navigate class="nav-link">
                 <i class="nav-icon fas fa-book-open"></i>
                 <p>
                   Courses
-                  <i class="right fas fa-angle-left"></i>
                 </p>
               </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="/courses" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>View Courses</p>
-                  </a>
-                </li>
-              </ul>
             </li>
             <li class="nav-item">
               <a href="#" class="nav-link">
@@ -83,49 +74,25 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="/student/attendance" class="nav-link">
+                  <a href="{{ route('admin.student.attendance.view') }}" wire:navigate class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Attendance</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="pages/UI/icons.html" class="nav-link">
+                  <a href="{{ route('admin.student.marks.view') }}" wire:navigate class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Marks</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="pages/UI/buttons.html" class="nav-link">
+                  <a href="{{ route('admin.student.results.view') }}" wire:navigate class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Results</p>
                   </a>
                 </li>
               </ul>
             </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-tools"></i>
-                <p>
-                  Other
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="pages/forms/general.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Pending Requests</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/forms/advanced.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Complaints</p>
-                  </a>
-                </li>
-              </ul>
-            </li>
-
           @endif
 
           @if(auth()->user()->role === 'teacher')
@@ -181,36 +148,6 @@
               </a>
             </li>
           @endif
-
-          @if (auth()->user()->role === 'chairman')
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon far fa-meh"></i>
-                <p>
-                  Student Complaints
-                </p>
-              </a>
-            </li>
-
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon far fa-meh"></i>
-                <p>
-                  Class Performance
-                </p>
-              </a>
-            </li>
-
-          @endif
-
-          {{-- <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon far fa-meh"></i>
-              <p>
-                My Profile
-              </p>
-            </a>
-          </li> --}}
           <li class="nav-item">
             <a href="/logout" class="nav-link">
               <i class="nav-icon fas fa-sign-out-alt"></i>

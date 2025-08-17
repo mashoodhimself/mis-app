@@ -38,7 +38,7 @@
 
                                 <div class="row mb-3">
                                     <div class="col-md-12">
-                                        <textarea name="feed_desc" rows="12" cols="20"  class="form-control" placeholder="Enter description here.."></textarea>
+                                        <textarea name="feed_desc" id="feed_desc" rows="12" cols="20"  class="form-control" placeholder="Enter description here.."></textarea>
                                     </div>
                                 </div>
 
@@ -58,5 +58,11 @@
 
 </div>
 
+<script>
+    tinymce.init({
+        selector: 'textarea',
+        license_key: 'gpl'
+    });
+</script>
 
 <x-commons.footer />

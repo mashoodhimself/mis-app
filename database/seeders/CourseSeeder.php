@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Course;
+use App\Models\CourseAssignment;
 use Illuminate\Database\Seeder;
 
 class CourseSeeder extends Seeder
@@ -14,7 +15,8 @@ class CourseSeeder extends Seeder
      */
     public function run()
     {
-        Course::upsert([
+
+        $courses = [
             [
                 'title' => 'Introduction to Programming',
                 'code' => 'CS-101',
@@ -37,6 +39,12 @@ class CourseSeeder extends Seeder
                 'credit' => 4,
                 'status' => 1,
             ], 
-        ], ['code']);
+        ];
+
+        foreach ($courses as $course) { 
+            $c = Course::create($course);
+            CourseAssignment::create(['user_id' => 0, 'course_id' => $c->id]);
+        }
+        
     }
 }

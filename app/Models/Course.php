@@ -12,8 +12,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Course extends Model
 {
     use HasFactory;
-    protected $guarded = [];
-
+    protected $fillable = ['title', 'code', 'credit'];
 
     public function users()
     {
@@ -33,6 +32,11 @@ class Course extends Model
     public function attendance()
     {
         return $this->hasOne(Attendance::class);
+    }
+
+    public function assigned_courses()
+    {
+        return $this->hasOne(CourseAssignment::class, 'course_id', 'id');
     }
 
 }
