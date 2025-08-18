@@ -7,8 +7,7 @@
 <x-commons.sidebar />
 
 <div class="content-wrapper">
-    <x-commons.content-header title="Add New Teacher" />
-    <livewire:admin.create-user />          
+    <x-commons.content-header title="Add New Teacher" />      
 </div>
 
 <x-commons.footer />

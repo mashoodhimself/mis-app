@@ -8,7 +8,6 @@
 
 <div class="content-wrapper">
     <x-commons.content-header title="Users List" />
-    <livewire:admin.view-user />
 </div>
 
 
