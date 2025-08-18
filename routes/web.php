@@ -1,16 +1,17 @@
 <?php
 
-use App\Http\Controllers\Teacher\TeacherCourseController;
+use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FeedController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AjaxHandlerController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Teacher\MarkController;
-use App\Http\Controllers\StudentController;
 use App\Http\Controllers\Teacher\ResultController;
 use App\Http\Controllers\Teacher\AttendanceController;
+use App\Http\Controllers\Teacher\TeacherCourseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,12 @@ use App\Http\Controllers\Teacher\AttendanceController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+
+Route::get('/hello', function () {
+    return Inertia::render('Hello', [
+        'name' => 'Mashoodullah 🚀',
+    ]);
+});
 
 
 Route::middleware('auth')->group(function () {

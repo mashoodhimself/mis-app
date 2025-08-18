@@ -24,7 +24,9 @@
 
   <link rel="stylesheet" href="{{ asset('assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }} ">
   
-  <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+  @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+  @inertiaHead
 
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
