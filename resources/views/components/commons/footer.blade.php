@@ -31,6 +31,8 @@
 <script src="{{ asset('assets/dist/js/adminlte.js') }} "></script>
 <!-- Sweet Alert -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- Toastr JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 <script src="{{ mix('js/app.js') }}" ></script>
 

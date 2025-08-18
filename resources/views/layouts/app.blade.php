@@ -6,6 +6,8 @@
 
     <main class="content-wrapper">
         {{ $slot }}
+
     </main>
+
 
 <x-commons.footer />

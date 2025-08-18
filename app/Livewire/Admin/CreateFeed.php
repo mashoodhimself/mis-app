@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Admin;
 
+use App\Events\NewNotification;
 use App\Models\Feed;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -9,7 +10,6 @@ use Livewire\WithFileUploads;
 
 class CreateFeed extends Component
 {
-
     use WithFileUploads;
 
     #[Validate('required|max:100')]
@@ -29,11 +29,11 @@ class CreateFeed extends Component
 
         try {
 
-            if(!empty($this->feed_file)) {
+            if (!empty($this->feed_file)) {
                 $filename = time() . '-' . $this->feed_file->getClientOriginalName();
                 $this->feed_file->storeAs('uploads', $filename, 'mis');
             }
-            
+
             Feed::create([
                 'user_id' => auth()->user()->id,
                 'title' => $this->feed_title,
@@ -41,6 +41,8 @@ class CreateFeed extends Component
                 'audiance' => 2,
                 'attachment' => $filename ?? '',
             ]);
+
+            NewNotification::dispatch('New Notification Created.');
 
             session()->flash('success', 'Feed created successfully.');
 

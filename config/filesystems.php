@@ -51,6 +51,8 @@ return [
         'mis' => [
             'driver' => 'local',
             'root' => public_path('assets'),
+            'url'    => env('APP_URL') . '/assets/uploads',
+            'visibility' => 'public',
         ],
 
         'public' => [

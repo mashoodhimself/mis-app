@@ -18,6 +18,8 @@
         "vue-template-compiler": "^2.7.16"
     },
     "dependencies": {
-        "nprogress": "^0.2.0"
+        "laravel-echo": "^1.11.3",
+        "nprogress": "^0.2.0",
+        "pusher-js": "^8.4.0"
     }
 }

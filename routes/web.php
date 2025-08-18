@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\Admin\CreateFeed;
+use App\Livewire\Admin\ViewFeed;
 use App\Livewire\Admin\ViewResult;
 use App\Livewire\Admin\ViewUser;
 use App\Livewire\Admin\ViewMarks;
@@ -62,6 +63,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/student/marks', ViewMarks::class)->name('admin.student.marks.view');
     Route::get('/student/results', ViewResult::class)->name('admin.student.results.view');
     Route::get('/feed/add', CreateFeed::class)->name('admin.feed.add');
+    Route::get('/feed', ViewFeed::class)->name('feed.view');
     /* Livewire Routes End */
 
 
@@ -85,20 +87,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/student/edit/{student}', [UserController::class, 'updateStudent']);
 
     Route::get('/student/delete/{student}', [UserController::class, 'destroyStudent']);
-
-    
-
     Route::post('/student/attendance', [StudentController::class, 'adminAttendanceIndex']);
-
-    
-
-
-
-    // Route::get('/course/add', [CourseController::class, 'create']);
-
     Route::post('/course/add', [CourseController::class, 'store']);
 
-    
 
     Route::post('/course/edit/{course}', [CourseController::class, 'update']);
 
@@ -132,7 +123,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/teacher/course', [TeacherCourseController::class, 'index']);
 
-    Route::get('/feed', [FeedController::class, 'index']);
+    
     
     Route::post('/feed/add', [FeedController::class, 'store']);
     Route::get('/feed/edit/{feed}', [FeedController::class, 'edit']);
