@@ -27,7 +27,7 @@
 </head>
 <body class="antialiased">
     @inertia
-
+    @routes
 
     <!-- jQuery -->
     <script src="{{ asset('assets/plugins/jquery/jquery.min.js') }} "></script>

@@ -1,4 +1,5 @@
 <script setup>
+    import { Link } from '@inertiajs/vue3'
     import adminLogo from "../Assets/dist/img/AdminLTELogo.png";
     import userLogo from "../Assets/dist/img/user2-160x160.jpg";
 </script>
@@ -31,29 +32,11 @@
                     data-accordion="false">
 
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <Link href="/feed" class="nav-link">
                             <i class="nav-icon fas fa-user"></i>
-                            <p>
-                                Annoucements
-                                <i class="fas fa-angle-left right"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="/feed" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>View</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="/feed/add" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Add</p>
-                                </a>
-                            </li>
-                        </ul>
+                            <p>Annoucements</p>
+                        </Link>
                     </li>
-
                     <li class="nav-item">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-user"></i>
@@ -221,16 +204,11 @@
                             </p>
                         </a>
                     </li>
-
-
-
                     <li class="nav-item">
-                        <a href="/logout" class="nav-link">
+                        <Link href="/logout" class="nav-link">
                             <i class="nav-icon fas fa-sign-out-alt"></i>
-                            <p>
-                                Sign Out
-                            </p>
-                        </a>
+                            <p>Sign Out</p>
+                        </Link>
                     </li>
                 </ul>
             </nav>

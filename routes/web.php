@@ -38,14 +38,13 @@ Route::get('/hello', function () {
 Route::middleware('auth')->group(function () {
 
     Route::get('/', function () {
-
-        return view('dashboard');
-    });
+        return Inertia::render('Dashboard');
+    })->name('dashboard');
 
     Route::get('/logout', function () {
         Auth::logout();
-        return redirect('/login');
-    });
+        return redirect()->route('logout');
+    })->name('logout');
 
     Route::get('/teachers', [UserController::class, 'viewTeachers']);
 
@@ -117,7 +116,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/teacher/course', [TeacherCourseController::class, 'index']);
 
-    Route::get('/feed', [FeedController::class, 'index']);
+    Route::get('/feed', [FeedController::class, 'index'])->name('add.feed');
     Route::get('/feed/add', [FeedController::class, 'create']);
     Route::post('/feed/add', [FeedController::class, 'store']);
     Route::get('/feed/edit/{feed}', [FeedController::class, 'edit']);

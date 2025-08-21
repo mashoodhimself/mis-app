@@ -1,5 +1,16 @@
 <script setup lang="ts">
+import { useForm } from '@inertiajs/vue3';
 import GuestLayout from '../Layouts/GuestLayout.vue';
+
+const form = useForm({
+    email: '',
+    password: '',
+});
+
+function submit() {
+    form.post(route('user.login'));
+}
+
 
 </script>
 
@@ -12,9 +23,9 @@ import GuestLayout from '../Layouts/GuestLayout.vue';
         <div class="card">
             <div class="card-body login-card-body">
                 <p class="login-box-msg">Sign in to start your session</p>
-                <form action="/login" method="post">
+                <form @submit.prevent="submit" >
                     <div class="input-group mb-3">
-                        <input type="email" class="form-control" name="email" id="email" placeholder="Email">
+                        <input type="email" class="form-control" v-model="form.email" id="email" placeholder="Email">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>
@@ -22,7 +33,7 @@ import GuestLayout from '../Layouts/GuestLayout.vue';
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" name="password" id="password"
+                        <input type="password" class="form-control" v-model="form.password" id="password"
                             placeholder="Password">
                         <div class="input-group-append">
                             <div class="input-group-text">

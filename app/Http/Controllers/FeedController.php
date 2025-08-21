@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Feed;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class FeedController extends Controller
 {
     public function index()
     {
-        $feeds = Feed::with('user')->select('id', 'user_id', 'title', 'description')->get();
-        return view('feed', ['feeds' => $feeds]);
+        $feeds = Feed::with('user')->select('id', 'user_id', 'title', 'description')->paginate(5);
+        return Inertia::render('Feed', ['feeds' => $feeds]);
     }
 
     public function create()
