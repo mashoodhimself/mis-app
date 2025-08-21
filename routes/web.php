@@ -29,7 +29,7 @@ use App\Http\Controllers\Teacher\TeacherCourseController;
 // });
 
 Route::get('/hello', function () {
-    return Inertia::render('Hello', [
+    return Inertia::render('Login', [
         'name' => 'Mashoodullah 🚀',
     ]);
 });
@@ -138,7 +138,7 @@ Route::middleware('auth')->group(function () {
 
 
 Route::get('/login', function () {
-    return view('login');
+    return Inertia::render('Login');
 })->name('login');
 
-Route::post('/login', [AuthController::class, 'login']);
+Route::post('/login', [AuthController::class, 'login'])->name('user.login');
